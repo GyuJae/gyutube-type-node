@@ -1,0 +1,22 @@
+header.flex.flex-row.justify-between.items-center.h-20.uppercase
+    a(href="/").px-8.flex.text-center
+        i.fab.fa-youtube.text-xl.text-red
+        h1.font-extrabold.pl-1 Premium
+    nav.px-8
+        ul.flex.flex-row.items-center.space-x-4.font-extrabold
+            if loggedIn
+                li
+                    a(href="/videos/upload") Upload Video
+                li
+                    a(href=`/users/${loggedInUser._id}`) My Profile
+                li
+                    a(href="/users/edit") Edit Profile
+                li
+                    a(href="/users/logout")  Log Out
+            else
+                li
+                    a(href="/login")  Login                        
+                li
+                    a(href="/join")  Join
+            li
+                a(href="/search") Search

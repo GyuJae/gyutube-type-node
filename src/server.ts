@@ -2,6 +2,7 @@ import "./db";
 import "./models/Video";
 import express from "express";
 import morgan from "morgan";
+import path from "path";
 
 import rootRouter from "./routers/root.router";
 import userRouter from "./routers/user.router";
@@ -38,9 +39,10 @@ app.use(
 );
 
 app.use(localsMiddleware);
-app.use("/uploads", express.static("uploads"));
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
+app.use(express.static(path.join(__dirname, "/public")));
+app.use("/uploads", express.static("uploads"));
 
 export default app;

@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply px-4 py-2 bg-red-600 text-white rounded;
+}
+
+.label {
+  @apply block from-gray-700 text-sm font-bold mb-2 uppercase;
+}
+.input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 from-gray-700 leading-tight focus:outline-none;
+}
+
+.form {
+  @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+}

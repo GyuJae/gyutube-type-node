@@ -4,7 +4,9 @@ import Video from "../models/Video";
 import formatHashtags from "../utils/formatHashtags";
 
 export const home = async (req: Request, res: Response) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" });
+  const videos = await Video.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   return res.render("home", { pageTitle: "Home", videos });
 };
 
@@ -89,7 +91,6 @@ export const postUpload = async (req: Request, res: Response) => {
 export const search = async (req: Request, res: Response) => {
   const { keyword } = req.query;
   let videos: any[] = [];
-  console.log(keyword);
 
   return res.render("search", { pageTitle: "Search", videos });
 };
@@ -105,7 +106,7 @@ export const deleteVideo = async (req: Request, res: Response) => {
     if (String(video.owner) !== String(user?._id)) {
       return res.status(403).redirect("/");
     }
-    await Video.findOneAndDelete(video?.id);
+    await Video.findByIdAndRemove(video?._id);
     return res.redirect("/");
   } catch (error) {
     console.log(error);
